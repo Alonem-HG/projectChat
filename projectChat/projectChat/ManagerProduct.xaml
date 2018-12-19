@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectChat.ManagerProduct">
+    <ContentPage.Content>
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Details Product">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="250" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png" 
+                                       HeightRequest="150" WidthRequest="150" Margin="1"
+                                 Grid.Row="0" Grid.Column="0" />
+                                
+                                <Label Text="Name:" Grid.Row="0" Grid.Column="2" />
+                                <Label Text="Cost:" Grid.Row="1" Grid.Column="2" />
+                                <Label Text="Quantity:" Grid.Row="2" Grid.Column="2" />
+                                <Button Text="Edit" x:Name="_btnEdit" Grid.Row="0" Grid.Column="3"></Button>
+                                <Button Text="Remove" x:Name="_btnRemove" Grid.Row="1" Grid.Column="3"></Button>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectChat.Login">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label VerticalOptions="Start" Text="Log in"></Label>
+            </StackLayout>
+            <Label VerticalOptions="FillAndExpand" Text="Username"></Label>
+            <Entry Text="Username"></Entry>
+            <Label Text="Password" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+            <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsPassword="True"
+             PlaceholderColor="Black" x:Name="_password" ></Entry>
+
+            <Button Text="Login"  BorderColor="Azure" 
+                    FontAttributes="Italic" TextColor="BlueViolet" x:Name="_btnLogin"></Button>
+            <Button Text="New Account"  BorderColor="Azure" 
+                    FontAttributes="Italic" TextColor="BlueViolet" x:Name="_btnCreateAccount"></Button>
+            <Button Text="Find ID" BorderColor="Azure" 
+                    FontAttributes="Italic" TextColor="BlueViolet"></Button>
+            <Button Text="Reset Password" BorderColor="Azure" 
+                    FontAttributes="Italic" TextColor="BlueViolet"></Button>
+            <Button Text="Back"  BorderColor="Azure" 
+                    FontAttributes="Italic" TextColor="BlueViolet"></Button>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

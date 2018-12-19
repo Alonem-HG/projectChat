@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectChat.CreateProduct"
+             Title="Adding Producto">
+   
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Adding Product"  FontSize="Large"  TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
+                
+                <Label Text="Name" VerticalOptions="CenterAndExpand"></Label>
+                <Entry x:Name="_nameProduct"></Entry>
+
+                <Image  x:Name="imageProduct" WidthRequest="150" HeightRequest="150" VerticalOptions="Start"  Margin="4"></Image>
+                <Button x:Name="_btnupload" Text="Upload Image..."></Button>
+
+                <Label VerticalOptions="CenterAndExpand" Text="Cost" ></Label>
+                <Entry x:Name="_costProduct" VerticalOptions="FillAndExpand"  Keyboard="Numeric"></Entry>
+                
+                <Label VerticalOptions="CenterAndExpand" Text="Quantity"></Label>
+                <Entry x:Name="_quantiProduct" HorizontalOptions="FillAndExpand" Keyboard="Numeric"></Entry>
+
+                <Label Text="Brand" VerticalOptions="CenterAndExpand"></Label>
+                <Picker x:Name="_brandProduct" Title="Brands..."></Picker>
+
+                <Label Text="Category" VerticalOptions="CenterAndExpand"></Label>
+                <Picker x:Name="_catProduct"  Title="Categories..."></Picker>
+
+                <Label Text="Sub-Category" VerticalOptions="CenterAndExpand"></Label>
+                <Picker x:Name="_subcatProduct" Title="Sub-Categories..."></Picker>
+
+                <Editor Text="Description" VerticalOptions="CenterAndExpand" 
+                  x:Name="_description"      Placeholder="Add a description..." MaxLength="200" ></Editor>
+               
+            </StackLayout>
+            
+            <StackLayout>
+                <Label Text="Methods of pay"  FontSize="Large"  TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
+                
+                <Label Text="Options" VerticalOptions="StartAndExpand"></Label>
+                <Picker x:Name="_typePay" Title="Options..."></Picker>
+                
+                <Label Text="M.S.I Y/N" VerticalOptions="StartAndExpand"></Label>
+                <Switch x:Name="_switchOpt" IsToggled="False" HorizontalOptions="Start" AnchorX="0"></Switch>
+            </StackLayout>
+            
+            <StackLayout >
+                <Label Text="Places" FontSize="Large" TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
+                
+                <Label Text="Oblatos" ></Label>
+                <Switch x:Name="_switchObs" IsToggled="False" HorizontalOptions="StartAndExpand" ></Switch>
+                <Label Text="Tlaquepaque" ></Label>
+                <Switch x:Name="_switchTle" IsToggled="False" HorizontalOptions="StartAndExpand" ></Switch>
+                <Label Text="Tonala"></Label>
+                <Switch x:Name="_switchToa" IsToggled="False" HorizontalOptions="StartAndExpand"></Switch>
+                <Label Text="Zapopan"></Label>
+                <Switch x:Name="_switchZan" IsToggled="False" HorizontalOptions="StartAndExpand"></Switch>
+
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Save" x:Name="_btnSave" BorderRadius="2" ></Button>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
