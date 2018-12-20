@@ -9,10 +9,10 @@ namespace projectChat.Models
     {
         [PrimaryKey, AutoIncrement]
         public int iduser { get; set; }
-       
+
         public int ageuser { get; set; }
         public int telephoneuser { get; set; }
-
+   
         public string lastnameuser { get; set; }
         public string nameuser { get; set; }
         public string countryuser { get; set; }

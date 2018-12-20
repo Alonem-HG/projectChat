@@ -1,5 +1,6 @@
 ﻿using Plugin.Media;
 using projectChat.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,16 @@ using Xamarin.Forms.Xaml;
 
 namespace projectChat
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CreateUser : ContentPage
-	{
-		public CreateUser ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CreateUser : ContentPage
+    {
+        private SQLiteAsyncConnection _cnn;
+        public CreateUser()
+        {
+            InitializeComponent();
+            _cnn = DependencyService.Get<ISQLiteDB>().GetConnection();
+            //events button
+            _btnSave.Clicked += _btnSave_Clicked;
             //Events to Password
             password.Completed += password_completed;
             passwordc.Completed += password_completed;
@@ -37,6 +42,57 @@ namespace projectChat
             //media
             _btntake.Clicked += _btntake_Clicked;
             _btnupload.Clicked += _btnupload_Clicked;
+        }
+
+        private async void _btnSave_Clicked(object sender, EventArgs e)
+        {
+
+            if (password.Text != null && passwordc.Text != null)
+            {
+                /**
+                 * Password doesn't match
+                 **/
+                if (password.Text != passwordc.Text)
+                {
+                    await DisplayAlert("Error!", "Your password doesn't match!, Try again please.", "Cancel", "Continue");
+                }
+                /**
+                 * Password are match
+                 **/
+                else if (password.Text.Equals(passwordc.Text))
+                {
+                    if (!string.IsNullOrEmpty(_name.Text) && !string.IsNullOrEmpty(_lastName.Text))
+                    //!string.IsNullOrEmpty())&&
+                    {
+                        var user = new User()
+                        {
+                            nameuser = _name.Text,
+                            lastnameuser = _lastName.Text,
+                            passworduser = passwordc.Text,
+                            dateBirth = dBirthday.Date,
+
+                        };
+
+                        var result = await _cnn.InsertAsync(user);
+                        var users = await _cnn.Table<User>().ToListAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Fields Nulls", "Please, fill all fields", "ok");
+                    }
+                    // await DisplayAlert("Password is succesfull!", "Password are OK!", "Cancel", "Continue");
+                }
+            }
+            /**
+             * Some field is empty and it needs to fill it.
+             **/
+            else
+            {
+                await DisplayAlert("Error!", "Fill correctly the fields, please.", "Cancel", "Continue");
+            }
+        
+           
+            
         }
 
         private async void _btnupload_Clicked(object sender, EventArgs e)
@@ -68,10 +124,10 @@ namespace projectChat
             }
             var file = await CrossMedia.Current.TakePhotoAsync(
                 new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                SaveToAlbum = true,
-                Name = "test.jpg"
-            });
+                {
+                    SaveToAlbum = true,
+                    Name = "test.jpg"
+                });
 
 
             if (file == null)
@@ -80,15 +136,15 @@ namespace projectChat
             }
             else
 
-            //imageUser.Source = ImageSource.FromStream(() => file.GetStream());
-            imageUser.Source = ImageSource.FromStream(() => { return file.GetStream(); });
+                //imageUser.Source = ImageSource.FromStream(() => file.GetStream());
+                imageUser.Source = ImageSource.FromStream(() => { return file.GetStream(); });
 
         }
 
         private async void password_completed(object sender, EventArgs e)
         {
-            var regex = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8-15}";
-
+          //  var regex = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8-15}";
+            var regex = @"([A-Z])\w+";
             //
             Regex rx = new Regex(regex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             //metodo que regresa un objeto
@@ -100,9 +156,7 @@ namespace projectChat
                 {
                     await DisplayAlert("Error!", "Contraseña invalida", "Cancel");
                 }
-
             }
-
 
             if (!string.IsNullOrEmpty(passwordc.Text))
             {
@@ -119,36 +173,37 @@ namespace projectChat
         }
 
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
+     //   private async void Button_Clicked(object sender, EventArgs e)
+     //   {
 
-            /**
-     Fields aren't emptys
-     **/
-            if (password.Text != null && passwordc.Text != null)
-            {
-                /**
-                 * Password doesn't match
-                 **/
-                if (password.Text != passwordc.Text)
-                {
-                    await DisplayAlert("Error!", "Your password doesn't match!, Try again please.", "Cancel", "Continue");
-                }
-                /**
-                 * Password are match
-                 **/
-                else if (password.Text.Equals(passwordc.Text))
-                {
-                    await DisplayAlert("Password is succesfull!", "Password are OK!", "Cancel", "Continue");
-                }
-            }
-            /**
-             * Some field is empty and it needs to fill it.
-             **/
-            else
-            {
-                await DisplayAlert("Error!", "Fill correctly the fields, please.", "Cancel", "Continue");
-            }
-        }
+     //       /**
+     //Fields aren't emptys
+     //**/
+     //       if (password.Text != null && passwordc.Text != null)
+     //       {
+     //           /**
+     //            * Password doesn't match
+     //            **/
+     //           if (password.Text != passwordc.Text)
+     //           {
+     //               await DisplayAlert("Error!", "Your password doesn't match!, Try again please.", "Cancel", "Continue");
+     //           }
+     //           /**
+     //            * Password are match
+     //            **/
+     //           else if (password.Text.Equals(passwordc.Text))
+     //           {
+     //               await DisplayAlert("Password is succesfull!", "Password are OK!", "Cancel", "Continue");
+     //           }
+     //       }
+     //       /**
+     //        * Some field is empty and it needs to fill it.
+     //        **/
+     //       else
+     //       {
+     //           await DisplayAlert("Error!", "Fill correctly the fields, please.", "Cancel", "Continue");
+     //       }
+     //   }
+
     }
 }

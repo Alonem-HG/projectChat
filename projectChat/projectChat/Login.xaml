@@ -8,7 +8,7 @@
                 <Label VerticalOptions="Start" Text="Log in"></Label>
             </StackLayout>
             <Label VerticalOptions="FillAndExpand" Text="Username"></Label>
-            <Entry Text="Username"></Entry>
+            <Entry Text="Username" x:Name="_userName"></Entry>
             <Label Text="Password" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
             <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsPassword="True"
              PlaceholderColor="Black" x:Name="_password" ></Entry>

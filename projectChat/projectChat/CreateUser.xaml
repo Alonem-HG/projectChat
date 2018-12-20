@@ -9,11 +9,11 @@
             </StackLayout>
             <!--Basic information of User-->
             <Label VerticalOptions="Center" Text="NAME" ></Label>
-            <Entry VerticalOptions="FillAndExpand"  Keyboard="Text"></Entry>
+            <Entry VerticalOptions="FillAndExpand"  Keyboard="Text" x:Name="_name"></Entry>
             <Label VerticalOptions="Center" Text="LAST NAME" ></Label>
-            <Entry VerticalOptions="FillAndExpand"  Keyboard="Text"></Entry>
+            <Entry VerticalOptions="FillAndExpand"  Keyboard="Text" x:Name="_lastName"></Entry>
             <Label VerticalOptions="CenterAndExpand" Text="TELEPHONE"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Keyboard="Telephone"></Entry>
+            <Entry HorizontalOptions="FillAndExpand" Keyboard="Telephone" x:Name="_telephone"></Entry>
             <!--Image of user-->
             <Button x:Name="_btntake" Text="Take From camera"></Button>
             <Button x:Name="_btnupload" Text="Pick a photo"></Button>
@@ -50,11 +50,12 @@
             <!--Agree with privacy-->
             <Entry Keyboard="Url" TextColor="GreenYellow" Text="Agree to the terms of service" ></Entry>
             <!--Button that send and save information-->
-            <Button Text="Send" x:Name="bSave" Clicked="Button_Clicked"
+            <!--<Button Text="Send" x:Name="bSave" Clicked="Button_Clicked"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"
-                    BorderColor="Azure" FontAttributes="Italic" TextColor="Black" ></Button>
+                    BorderColor="Azure" FontAttributes="Italic" TextColor="Black" ></Button>-->
             <!--Date of register-->
             <DatePicker x:Name="dDayRegister" Format="dd/MM/yyy" IsVisible="False"></DatePicker>
+            <Button Text="Create" x:Name="_btnSave"></Button>
         </StackLayout>
     </ScrollView>
 </ContentPage>

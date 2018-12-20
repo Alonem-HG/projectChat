@@ -3,38 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="projectChat.ManagerProduct">
     <ContentPage.Content>
-        <TableView Intent="Form">
-            <TableRoot>
-                <TableSection Title="Details Product">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="250" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png" 
-                                       HeightRequest="150" WidthRequest="150" Margin="1"
-                                 Grid.Row="0" Grid.Column="0" />
-                                
-                                <Label Text="Name:" Grid.Row="0" Grid.Column="2" />
-                                <Label Text="Cost:" Grid.Row="1" Grid.Column="2" />
-                                <Label Text="Quantity:" Grid.Row="2" Grid.Column="2" />
-                                <Button Text="Edit" x:Name="_btnEdit" Grid.Row="0" Grid.Column="3"></Button>
-                                <Button Text="Remove" x:Name="_btnRemove" Grid.Row="1" Grid.Column="3"></Button>
-                            </Grid>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <StackLayout HorizontalOptions="FillAndExpand" >
+            <Grid HeightRequest="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="xProductView"  HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>
+                            <TextCell Text="{Binding Name}"  Grid.Row="0" Grid.Column="2"></TextCell>
+                            <TextCell Text="{Binding Cost}"  Grid.Row="1" Grid.Column="2"></TextCell>
+                            <TextCell Text="{Binding Quantity}"  Grid.Row="2" Grid.Column="2"></TextCell>
+
+                            <!--<Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png"
+                                       HeightRequest="50" WidthRequest="50"
+                                    Margin="1" Grid.Row="0" Grid.Column="0" />-->
+                            <!--<Label Text="Name:" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" />
+                            <Label Text="Cost:" Grid.Row="1" Grid.Column="2" />
+                            <Label Text="Quantity:" Grid.Row="2" Grid.Column="2" />-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout>
+                    <Button Text="Edit" x:Name="_btnEdit" 
+                                        Grid.Row="0" Grid.Column="3" HeightRequest="50" WidthRequest="80" ></Button>
+                    <Button Text="Remove" x:Name="_btnRemove"
+                                    Grid.Row="1" Grid.Column="3"
+                                    BackgroundColor="Orange"
+                                    TextColor="White"
+                                    HeightRequest="50"
+                                    WidthRequest="80">
+                    </Button>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

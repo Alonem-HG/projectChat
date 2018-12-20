@@ -10,5 +10,6 @@ namespace projectChat.Models
         void SaveUser();
         void DeleteUser();
         void UpdateUser();
+        List<User> SearchByUser(string user);
     }
 }

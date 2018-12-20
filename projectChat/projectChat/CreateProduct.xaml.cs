@@ -18,18 +18,30 @@ namespace projectChat
         private Pickers ps= new Pickers();
         private SQLiteAsyncConnection _cnn;
         private string brand;
+        private List<User> listUser;
+
         public CreateProduct ()
 		{
 			InitializeComponent ();
             //inicia la conexion
             _cnn = DependencyService.Get<ISQLiteDB>().GetConnection();
+            #region Load Items
             _catProduct.ItemsSource = ps.ListCategories();
             _brandProduct.ItemsSource = ps.ListBrands();
             _subcatProduct.ItemsSource = ps.ListSubcategories();
+            #endregion
+
             _btnSave.Clicked += _btnSave_Clicked;
             _brandProduct.SelectedIndexChanged += _brandProduct_SelectedIndexChanged;
             _btnupload.Clicked += _btnupload_Clicked;
 		}
+
+        //inicia el view
+        protected async override void OnAppearing()
+        {
+            await _cnn.CreateTableAsync<ProductModel>();
+            base.OnAppearing();
+        }
 
         private async void _btnupload_Clicked(object sender, EventArgs e)
         {

@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.CurrentActivity;
 
+
 namespace projectChat.Droid
 {
     [Activity(Label = "projectChat", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -21,6 +22,9 @@ namespace projectChat.Droid
             base.OnCreate(savedInstanceState);
             //camera
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            //
+            //popup
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             //
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
