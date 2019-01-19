@@ -3,49 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="projectChat.ManagerProduct">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" >
-            <Grid HeightRequest="250">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <ListView x:Name="xProductView"  HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>
-                            <TextCell Text="{Binding Name}"  Grid.Row="0" Grid.Column="2"></TextCell>
-                            <TextCell Text="{Binding Cost}"  Grid.Row="1" Grid.Column="2"></TextCell>
-                            <TextCell Text="{Binding Quantity}"  Grid.Row="2" Grid.Column="2"></TextCell>
+        <StackLayout>
+            <ListView x:Name="xProductView"  HasUnevenRows="True" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="FillAndExpand" >
+                            <Grid HeightRequest="250">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <!--<Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png"
+                                <!--<Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>-->
+                                <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="2"></Label>
+                                <Label Text="{Binding Cost}"  Grid.Row="1" Grid.Column="2"></Label>
+                                <Label Text="{Binding Quantity}"  Grid.Row="2" Grid.Column="2"></Label>
+
+                                <!--<Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png"
                                        HeightRequest="50" WidthRequest="50"
                                     Margin="1" Grid.Row="0" Grid.Column="0" />-->
-                            <!--<Label Text="Name:" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" />
+                                <!--<Label Text="Name:" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" />
                             <Label Text="Cost:" Grid.Row="1" Grid.Column="2" />
                             <Label Text="Quantity:" Grid.Row="2" Grid.Column="2" />-->
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackLayout>
-                    <Button Text="Edit" x:Name="_btnEdit" 
-                                        Grid.Row="0" Grid.Column="3" HeightRequest="50" WidthRequest="80" ></Button>
-                    <Button Text="Remove" x:Name="_btnRemove"
+                                <StackLayout>
+                                    <StackLayout>
+                                        <Button Text="Edit" x:Name="_btnEdit" BackgroundColor="Orange"
+                                        Grid.Row="0" Grid.Column="3" HeightRequest="50" WidthRequest="80" Clicked="_btnEdit_Clicked"></Button>
+                                        <Button Text="Remove" x:Name="_btnRemove"
                                     Grid.Row="1" Grid.Column="3"
                                     BackgroundColor="Orange"
-                                    TextColor="White"
+                                    TextColor="Black"
                                     HeightRequest="50"
-                                    WidthRequest="80">
-                    </Button>
-                </StackLayout>
-            </Grid>
+                                    WidthRequest="80" Clicked="_btnRemove_Clicked">
+                                        </Button>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

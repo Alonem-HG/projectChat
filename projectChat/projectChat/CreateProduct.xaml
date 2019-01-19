@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="projectChat.CreateProduct"
              Title="Adding Producto">
-   
+
     <ScrollView>
         <StackLayout>
             <StackLayout>
                 <Label Text="Adding Product"  FontSize="Large"  TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
-                
+
                 <Label Text="Name" VerticalOptions="CenterAndExpand"></Label>
                 <Entry x:Name="_nameProduct"></Entry>
 
@@ -17,7 +17,7 @@
 
                 <Label VerticalOptions="CenterAndExpand" Text="Cost" ></Label>
                 <Entry x:Name="_costProduct" VerticalOptions="FillAndExpand"  Keyboard="Numeric"></Entry>
-                
+
                 <Label VerticalOptions="CenterAndExpand" Text="Quantity"></Label>
                 <Entry x:Name="_quantiProduct" HorizontalOptions="FillAndExpand" Keyboard="Numeric"></Entry>
 
@@ -32,20 +32,11 @@
 
                 <Editor Text="Description" VerticalOptions="CenterAndExpand" 
                   x:Name="_description"      Placeholder="Add a description..." MaxLength="200" ></Editor>
-               
+
             </StackLayout>
-            
-            <StackLayout>
-                <Label Text="Methods of pay"  FontSize="Large"  TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
-                
-                <Label Text="Options" VerticalOptions="StartAndExpand"></Label>
-                <Picker x:Name="_typePay" Title="Options..."></Picker>
-                
-                <Label Text="M.S.I Y/N" VerticalOptions="StartAndExpand"></Label>
-                <Switch x:Name="_switchOpt" IsToggled="False" HorizontalOptions="Start" AnchorX="0"></Switch>
-            </StackLayout>
-            
-            <StackLayout >
+
+
+            <!--<StackLayout >
                 <Label Text="Places" FontSize="Large" TextColor="Chocolate" HorizontalOptions="CenterAndExpand"></Label>
                 
                 <Label Text="Oblatos" ></Label>
@@ -57,9 +48,10 @@
                 <Label Text="Zapopan"></Label>
                 <Switch x:Name="_switchZan" IsToggled="False" HorizontalOptions="StartAndExpand"></Switch>
 
-            </StackLayout>
+            </StackLayout>-->
             <StackLayout>
                 <Button Text="Save" x:Name="_btnSave" BorderRadius="2" ></Button>
+                <Button Text="Delete All" x:Name="_btnDelete" BorderRadius="2" BorderColor="Orange"></Button>
             </StackLayout>
         </StackLayout>
     </ScrollView>

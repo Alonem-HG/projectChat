@@ -18,7 +18,7 @@ namespace projectChat
         private Pickers ps= new Pickers();
         private SQLiteAsyncConnection _cnn;
         private string brand;
-        private List<User> listUser;
+        //private List<User> listUser;
 
         public CreateProduct ()
 		{
@@ -32,14 +32,24 @@ namespace projectChat
             #endregion
 
             _btnSave.Clicked += _btnSave_Clicked;
-            _brandProduct.SelectedIndexChanged += _brandProduct_SelectedIndexChanged;
+            // _brandProduct.SelectedIndexChanged += _brandProduct_SelectedIndexChanged;
             _btnupload.Clicked += _btnupload_Clicked;
+            _btnDelete.Clicked += _btnDelete_Clicked;
 		}
+
+        private async void _btnDelete_Clicked(object sender, EventArgs e)
+        {
+            await _cnn.DropTableAsync<ProductModel>();
+        }
 
         //inicia el view
         protected async override void OnAppearing()
         {
+          //  await _cnn.DropTableAsync<ProductModel>();
+            List<ProductModel> pl = new List<ProductModel>();
             await _cnn.CreateTableAsync<ProductModel>();
+            pl = await _cnn.Table<ProductModel>().ToListAsync();
+            //await _cnn.DropTableAsync<ProductModel>();
             base.OnAppearing();
         }
 
@@ -54,10 +64,10 @@ namespace projectChat
             }
         }
 
-        private void _brandProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            brand = _brandProduct.SelectedItem as String;
-        }
+        //private void _brandProduct_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    brand = _brandProduct.SelectedItem as String;
+        //}
 
         private async void _btnSave_Clicked(object sender, EventArgs e)
         {
@@ -66,14 +76,16 @@ namespace projectChat
             var pm = new ProductModel() {
                 NameProduct = _nameProduct.Text,
                 CostProduct =  float.Parse(_costProduct.Text),
-                BrandProduct = brand,
+                //BrandProduct = _brandProduct.SelectedItem as String,
+               // CategoryProduct = _catProduct.SelectedItem as String,
+               // SubCategoryProduct = _subcatProduct.SelectedItem as String,
                 DescriptionProduct = _description.Text,
-                MSIProduct = _switchOpt.IsToggled,
                 QuantityProduct = int.Parse(_quantiProduct.Text),
             };
             await _cnn.InsertAsync(pm);
-                       
-        
+
+           await  Navigation.PushAsync(new ManagerProduct1());
+
         }
     }
 }

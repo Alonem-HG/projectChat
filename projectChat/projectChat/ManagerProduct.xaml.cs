@@ -13,25 +13,29 @@ using Xamarin.Forms.Xaml;
 
 namespace projectChat
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ManagerProduct : ContentPage
-	{
-        private ObservableCollection<ProductModel> productList = new ObservableCollection<ProductModel>();
-        private List<ProductModel> pt = new List<ProductModel>();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ManagerProduct : ContentPage
+    {
+        private ObservableCollection<ProductModel> _obproduct;
+        private List<ProductModel> pl = new List<ProductModel>();
         private SQLiteAsyncConnection _cnn;
-        public ManagerProduct ()
-		{
-			InitializeComponent ();
-            _btnEdit.Clicked += _btnEdit_Clicked;
-            _btnRemove.Clicked += _btnRemove_Clicked;
-		}
-        protected async override void OnAppearing()
-        {        
-            await _cnn.CreateTableAsync<ProductModel>();
+        public ManagerProduct()
+        {
+            InitializeComponent();
+            _cnn = DependencyService.Get<ISQLiteDB>().GetConnection();
+            //_btnEdit.Clicked += _btnEdit_Clicked;
+            //_btnRemove.Clicked += _btnRemove_Clicked;
 
-            productList = await _cnn.Table<ProductModel>().ToListAsync();          
-            xProductView.ItemsSource = productList;
-            //    base.OnAppearing();
+
+        }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await _cnn.CreateTableAsync<ProductModel>();
+            pl = await _cnn.Table<ProductModel>().ToListAsync();
+            _obproduct = new ObservableCollection<ProductModel>(pl);
+            xProductView.ItemsSource = _obproduct;
+            await DisplayAlert("Alerta", "OnAppearing", "OK");
         }
 
         private void _btnRemove_Clicked(object sender, EventArgs e)
@@ -39,7 +43,7 @@ namespace projectChat
             throw new NotImplementedException();
         }
 
-        private  void _btnEdit_Clicked(object sender, EventArgs e)
+        private void _btnEdit_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new EditProduct());
         }

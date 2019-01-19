@@ -11,8 +11,9 @@ namespace projectChat
         {
             InitializeComponent();
 
-            MainPage = new ManagerProduct();
-            //MainPage = new NavigationPage(new Login());
+           //MainPage = new CreateProduct();
+            // MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new ManagerProduct1());
         }
 
         protected override void OnStart()

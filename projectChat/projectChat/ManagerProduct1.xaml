@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectChat.ManagerProduct1">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="xProductView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout HorizontalOptions="StartAndExpand" HeightRequest="150" VerticalOptions="CenterAndExpand"
+                                             Padding="15" >
+                                    <Label Text="{Binding NameProduct}"  BackgroundColor="Chocolate" LineHeight="28"></Label>
+                                    
+                                    <Label Text="{Binding DescriptionProduct}"></Label>
+                                    
+                                    <Label Text="{Binding CostProduct}"></Label>
+                                    <Label Text="{Binding CostProduct, StringFormat='Number of Records = {0:N}'}"></Label>
+                                    
+                                    <Label Text="{Binding QuantityProduct}"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                        <!--<Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>-->
+                        <!--<Label Text="{Binding NameProduct}"  ></Label>
+                            <Label Text="{Binding DescriptionProduct}"  ></Label>
+                                <Label Text="{Binding CostProduct}"  ></Label>
+                            <Label Text="{Binding QuantityProduct}"  ></Label>-->
+                       
+                        <!--<TextCell Text="{Binding NameProduct}"></TextCell>-->
+
+
+
+
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout>
+                <Button Text="Edit" x:Name="_btnEdit" BackgroundColor="Orange"
+                                        HeightRequest="50" WidthRequest="80" Clicked="_btnEdit_Clicked"></Button>
+
+                <Button Text="Remove" x:Name="_btnRemove"
+                                    BackgroundColor="Orange"
+                                    TextColor="Black"
+                                    HeightRequest="50"
+                                    WidthRequest="80" Clicked="_btnRemove_Clicked">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
