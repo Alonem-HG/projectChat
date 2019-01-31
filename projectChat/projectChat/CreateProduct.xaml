@@ -14,7 +14,7 @@
 
                 <Image  x:Name="imageProduct" WidthRequest="150" HeightRequest="150" VerticalOptions="Start"  Margin="4"></Image>
                 <Button x:Name="_btnupload" Text="Upload Image..."></Button>
-
+    
                 <Label VerticalOptions="CenterAndExpand" Text="Cost" ></Label>
                 <Entry x:Name="_costProduct" VerticalOptions="FillAndExpand"  Keyboard="Numeric"></Entry>
 

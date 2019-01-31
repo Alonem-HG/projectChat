@@ -2,6 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="projectChat.ManagerProduct1">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="_back" Icon="back.png"></ToolbarItem>
+        <ToolbarItem x:Name="_add" Icon="add.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="xProductView" HasUnevenRows="True">
@@ -9,45 +14,33 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout HorizontalOptions="StartAndExpand" HeightRequest="150" VerticalOptions="CenterAndExpand"
-                                             Padding="15" >
-                                    <Label Text="{Binding NameProduct}"  BackgroundColor="Chocolate" LineHeight="28"></Label>
-                                    
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="30" >
+                                    <Label Text="{Binding NameProduct}" HeightRequest="50"></Label>
+
                                     <Label Text="{Binding DescriptionProduct}"></Label>
-                                    
+
                                     <Label Text="{Binding CostProduct}"></Label>
                                     <Label Text="{Binding CostProduct, StringFormat='Number of Records = {0:N}'}"></Label>
-                                    
+
                                     <Label Text="{Binding QuantityProduct}"></Label>
+
+                                    <Label Text="{Binding BrandProduct}"></Label>
+
+                                    <StackLayout HorizontalOptions="Start">
+                                        <Button Image="edit.png" x:Name="_btnEdit"  FontAttributes="Bold"
+                                         Clicked="_btnEdit_Clicked" BackgroundColor="White"></Button>
+                                        <StackLayout HorizontalOptions="End">
+                                            <Button Image="remove.png" x:Name="_btnRemove"
+                                     FontAttributes="Bold"  Clicked="_btnRemove_Clicked" BackgroundColor="White"></Button>
+                                        </StackLayout>
+                                    </StackLayout>
+
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
-                        <!--<Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>-->
-                        <!--<Label Text="{Binding NameProduct}"  ></Label>
-                            <Label Text="{Binding DescriptionProduct}"  ></Label>
-                                <Label Text="{Binding CostProduct}"  ></Label>
-                            <Label Text="{Binding QuantityProduct}"  ></Label>-->
-                       
-                        <!--<TextCell Text="{Binding NameProduct}"></TextCell>-->
-
-
-
-
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout>
-                <Button Text="Edit" x:Name="_btnEdit" BackgroundColor="Orange"
-                                        HeightRequest="50" WidthRequest="80" Clicked="_btnEdit_Clicked"></Button>
-
-                <Button Text="Remove" x:Name="_btnRemove"
-                                    BackgroundColor="Orange"
-                                    TextColor="Black"
-                                    HeightRequest="50"
-                                    WidthRequest="80" Clicked="_btnRemove_Clicked">
-                </Button>
-            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,52 +2,66 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="projectChat.ManagerProduct">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="_back" Icon="back.png"></ToolbarItem>
+        <ToolbarItem x:Name="_add" Icon="add.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="xProductView"  HasUnevenRows="True" >
+            <StackLayout VerticalOptions="Fill" HorizontalOptions="FillAndExpand" Margin="3,3">
+                <SearchBar x:Name="_seachBarNombre"
+                       Placeholder="Search by Name..."
+                       HeightRequest="40"></SearchBar>
+            </StackLayout>
+            <ListView x:Name="xProductView"  HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HorizontalOptions="FillAndExpand" >
-                            <Grid HeightRequest="250">
+                        <ViewCell>
+                            <!--HeightRequest="480"-->
+                            <Grid Padding="15" VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="256"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <!--<Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>-->
-                                <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="2"></Label>
-                                <Label Text="{Binding Cost}"  Grid.Row="1" Grid.Column="2"></Label>
-                                <Label Text="{Binding Quantity}"  Grid.Row="2" Grid.Column="2"></Label>
+                                <BoxView BackgroundColor="Yellow" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"  ></BoxView>
+                                <Label Text="{Binding NameProduct, StringFormat='Name: {0:N}'}"  
+                                       Grid.Row="1" Grid.Column="0"
+                                       VerticalOptions="Center" FontSize="Default"></Label>
+                                <Label Text="{Binding CostProduct, StringFormat='Cost: {0:N}'}"  
+                                       Grid.Row="2" Grid.Column="0"
+                                       VerticalOptions="Center" FontSize="Default"></Label>
+                                <Label Text="{Binding QuantityProduct, StringFormat='Quanty: {0:N}'}"  
+                                       Grid.Row="1" Grid.Column="1"
+                                       VerticalOptions="Center" FontSize="Default"></Label>
+                                <Label Text="{Binding BrandProduct, StringFormat='Brand: {0:N}'}"  
+                                       Grid.Row="2" Grid.Column="1"
+                                       VerticalOptions="Center" FontSize="Default"></Label>
+                                <Label Text="{Binding DescriptionProduct, StringFormat='Description: {0:N}'}"  
+                                       Grid.Row="3" Grid.Column="0"
+                                       VerticalOptions="Center" FontSize="Default"></Label>
 
-                                <!--<Image Source="https://static.techspot.com/images2/downloads/topdownload/2014/06/amd.png"
-                                       HeightRequest="50" WidthRequest="50"
-                                    Margin="1" Grid.Row="0" Grid.Column="0" />-->
-                                <!--<Label Text="Name:" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" />
-                            <Label Text="Cost:" Grid.Row="1" Grid.Column="2" />
-                            <Label Text="Quantity:" Grid.Row="2" Grid.Column="2" />-->
-                                <StackLayout>
-                                    <StackLayout>
-                                        <Button Text="Edit" x:Name="_btnEdit" BackgroundColor="Orange"
-                                        Grid.Row="0" Grid.Column="3" HeightRequest="50" WidthRequest="80" Clicked="_btnEdit_Clicked"></Button>
-                                        <Button Text="Remove" x:Name="_btnRemove"
-                                    Grid.Row="1" Grid.Column="3"
-                                    BackgroundColor="Orange"
-                                    TextColor="Black"
-                                    HeightRequest="50"
-                                    WidthRequest="80" Clicked="_btnRemove_Clicked">
-                                        </Button>
-                                    </StackLayout>
-                                </StackLayout>
+                                <Button Image="edit.png" x:Name="_btnEdit" BackgroundColor="White"
+                                        Grid.Row="1" Grid.Column="2" 
+                                        Clicked="_btnEdit_Clicked"></Button>
+
+                                <Button Image="remove.png" x:Name="_btnRemove" BackgroundColor="White"
+                                        Grid.Row="3" Grid.Column="2"
+                                        Clicked="_btnRemove_Clicked">
+                                </Button>
+
                             </Grid>
-                        </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

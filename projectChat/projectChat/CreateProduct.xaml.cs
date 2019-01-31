@@ -17,7 +17,6 @@ namespace projectChat
 	{
         private Pickers ps= new Pickers();
         private SQLiteAsyncConnection _cnn;
-        private string brand;
         //private List<User> listUser;
 
         public CreateProduct ()
@@ -76,7 +75,7 @@ namespace projectChat
             var pm = new ProductModel() {
                 NameProduct = _nameProduct.Text,
                 CostProduct =  float.Parse(_costProduct.Text),
-                //BrandProduct = _brandProduct.SelectedItem as String,
+                BrandProduct = _brandProduct.SelectedItem as String,
                // CategoryProduct = _catProduct.SelectedItem as String,
                // SubCategoryProduct = _subcatProduct.SelectedItem as String,
                 DescriptionProduct = _description.Text,
@@ -84,7 +83,7 @@ namespace projectChat
             };
             await _cnn.InsertAsync(pm);
 
-           await  Navigation.PushAsync(new ManagerProduct1());
+           await  Navigation.PushAsync(new ManagerProduct());
 
         }
     }
