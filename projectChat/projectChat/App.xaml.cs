@@ -13,7 +13,7 @@ namespace projectChat
 
            //MainPage = new CreateProduct();
             // MainPage = new NavigationPage(new Login());
-            MainPage = new NavigationPage(new ManagerProduct1());
+            MainPage = new NavigationPage(new ManagerProduct());
         }
 
         protected override void OnStart()

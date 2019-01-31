@@ -4,27 +4,103 @@
              x:Class="projectChat.EditProduct"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
-
+    <!--  You can set an animation in the xaml file or in the csharp code behind  -->
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="400"
-                                    DurationOut="300"
-                                   EasingIn="SinInOut"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
                                    EasingOut="SinIn"
                                    HasBackgroundAnimation="True"
                                    PositionIn="Center"
                                    PositionOut="Center"
-                                   ScaleIn="0.8">
-            
-        </animations:ScaleAnimation>
-        
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8" />
     </pages:PopupPage.Animation>
-    
-    <StackLayout Padding="20,20,20,20"
+    <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
+    <StackLayout Margin="25"
+                 Padding="10"
+                 BackgroundColor="White"
                  HorizontalOptions="Center"
-                 VerticalOptions="Center">
-        
-        <Button Text="Editing..." x:Name="_btnEdit"></Button>
-        
+                  >
+        <ListView x:Name="xProductView"  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="256"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--<Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>-->
+                            <BoxView BackgroundColor="Yellow" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  ></BoxView>
+                            <Label Text="{Binding IdProduct}" IsEnabled="False"></Label>
+
+                            <Label Text="Name:" VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="1" Grid.Column="0"></Label>
+                            <Entry  x:Name="_name" Text="{Binding NameProduct}" 
+                                   VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="1" Grid.Column="1" ></Entry>
+
+                            <Label Text="Cost:" VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="2" Grid.Column="0"></Label>
+                            <Entry x:Name="_cost"   Text="{Binding CostProduct}" 
+                                   VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="2" Grid.Column="1"></Entry>
+
+                            <Label Text="Quanty:" VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="3" Grid.Column="0"></Label>
+                            <Entry x:Name="_quanty" Text="{Binding QuantityProduct}"  
+                                   VerticalOptions="Center" FontSize="Medium"
+                                   Grid.Row="3" Grid.Column="1"></Entry>
+
+                            <Label Text="Brand:" VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="4" Grid.Column="0"></Label>
+                            <Picker x:Name="_brand" HorizontalOptions="Center" Title="{Binding BrandProduct}" 
+                                    VerticalOptions="Center" FontSize="Large" Margin="1"
+                                    Grid.Row="4" Grid.Column="1">
+                                <Picker.Items>
+                                    <x:String>ADATA</x:String>
+                                    <x:String>Vorago</x:String>
+                                    <x:String>ASUS</x:String>
+                                    <x:String>Dell</x:String>
+                                    <x:String>Cooler Master</x:String>
+                                    <x:String>AMD</x:String>
+                                    <x:String>INTEL</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                            <Label Text="Description:" VerticalOptions="Center" FontSize="Default"
+                                   Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                            <Editor x:Name="_descrip" Text="{Binding DescriptionProduct}" HeightRequest="150" 
+                                    FontSize="Large"
+                                    Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"></Editor>
+                               
+                            <!--Buttons-->
+                            <Button Image="edit.png" x:Name="_btnEdit" BackgroundColor="White" HorizontalOptions="Center"
+                                        Grid.Row="9" Grid.Column="0" 
+                                        Clicked="_btnEdit_Clicked"></Button>
+                            
+                            <Button  x:Name="_btnBack" BackgroundColor="White" HorizontalOptions="Center"
+                                        Grid.Row="9" Grid.Column="1" Text="Regresar" 
+                                        Clicked="_btnBack_Clicked"></Button>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
-    
 </pages:PopupPage>

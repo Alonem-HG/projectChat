@@ -22,6 +22,18 @@ namespace projectChat
 		{
 			InitializeComponent ();
             _cnn = DependencyService.Get<ISQLiteDB>().GetConnection();
+            _back.Clicked += _back_Clicked;
+            _add.Clicked += _add_Clicked;
+        }
+
+        private async void _add_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateProduct());
+        }
+
+        private async void _back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ManagerProduct1());
         }
 
         protected async override void OnAppearing()

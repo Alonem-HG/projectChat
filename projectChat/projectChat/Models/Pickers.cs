@@ -42,9 +42,9 @@ namespace projectChat.Models
 
         public List<string> ListBrands()
         {
-            brands.Add("Adata");
+            brands.Add("ADATE");
             brands.Add("Vorago");
-            brands.Add("Asus");
+            brands.Add("ASUS");
             brands.Add("Dell");
             brands.Add("Cooler Master");
             brands.Add("AMD");
